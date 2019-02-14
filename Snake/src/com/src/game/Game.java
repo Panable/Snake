@@ -1,5 +1,3 @@
-//random comment
-
 package com.src.game;
 
 import java.awt.Canvas;
@@ -9,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
+
+import com.src.game.tiles.TileManager;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
@@ -20,6 +20,8 @@ public class Game extends Canvas implements Runnable {
 	
 	private JFrame frame;
 	private Thread thread;
+	
+	private TileManager tm;
 	
 	public void Window() {
 		frame = new JFrame();
@@ -38,6 +40,8 @@ public class Game extends Canvas implements Runnable {
 		setPreferredSize(size);
 		setMaximumSize(size);
 		Window();
+		
+		tm = new TileManager();
 		start();
 	}
 	
@@ -60,7 +64,7 @@ public class Game extends Canvas implements Runnable {
 	public void run() {
 		this.requestFocus();
 		long lastTime = System.nanoTime();
-		double updates = 60.0;
+		double updates = 10.0;
 		double ns = 1000000000 / updates;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
@@ -86,7 +90,7 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	private void update() {
-		
+		tm.update();
 	}
 	
 	private void render() {
@@ -99,6 +103,8 @@ public class Game extends Canvas implements Runnable {
 		
 		g.setColor(Color.GRAY);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
+		
+		tm.render(g);
 		
 		g.dispose();
 		bs.show();
