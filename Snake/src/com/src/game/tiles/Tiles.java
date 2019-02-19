@@ -10,6 +10,7 @@ import com.src.game.Vector2f;
 public class Tiles {
 
 	private int x, y;
+	private int velX = 0, velY = 0;
 	private final int WIDTH = Game.WIDTH / TileManager.BOARD_WIDTH; 
 	private	final int HEIGHT = Game.HEIGHT / TileManager.BOARD_HEIGHT;
 	private int count;
@@ -22,6 +23,11 @@ public class Tiles {
 		this.color = color;
 		this.count = count;
 		Pos = new Vector2f(this.x, this.y, WIDTH, HEIGHT);
+	}
+	
+	public void update() {
+		x += velX;
+		y += velY;
 	}
 	
 	public void render(Graphics g) {

@@ -22,6 +22,7 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	
 	private TileManager tm;
+	private SnakeHead head;
 	
 	public void Window() {
 		frame = new JFrame();
@@ -42,6 +43,8 @@ public class Game extends Canvas implements Runnable {
 		Window();
 		
 		tm = new TileManager();
+		head = new SnakeHead(tm);
+		
 		start();
 	}
 	
@@ -105,6 +108,7 @@ public class Game extends Canvas implements Runnable {
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		tm.render(g);
+		head.render(g);
 		
 		g.dispose();
 		bs.show();
