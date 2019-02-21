@@ -8,6 +8,8 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import com.src.game.gameobjects.SnakeHead;
+import com.src.game.input.Keyboard;
 import com.src.game.tiles.TileManager;
 
 public class Game extends Canvas implements Runnable {
@@ -23,6 +25,7 @@ public class Game extends Canvas implements Runnable {
 	
 	private TileManager tm;
 	private SnakeHead head;
+	private Keyboard key;
 	
 	public void Window() {
 		frame = new JFrame();
@@ -44,7 +47,9 @@ public class Game extends Canvas implements Runnable {
 		
 		tm = new TileManager();
 		head = new SnakeHead(tm);
+		key = new Keyboard(head);
 		
+		addKeyListener(key);
 		start();
 	}
 	
@@ -67,7 +72,7 @@ public class Game extends Canvas implements Runnable {
 	public void run() {
 		this.requestFocus();
 		long lastTime = System.nanoTime();
-		double updates = 10.0;
+		double updates = 240.0;
 		double ns = 1000000000 / updates;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
@@ -94,6 +99,7 @@ public class Game extends Canvas implements Runnable {
 	
 	private void update() {
 		tm.update();
+		head.update();
 	}
 	
 	private void render() {
