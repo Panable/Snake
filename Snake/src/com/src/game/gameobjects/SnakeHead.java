@@ -2,6 +2,7 @@ package com.src.game.gameobjects;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.LinkedList;
 import java.util.Random;
 
 import com.src.game.tiles.TileManager;
@@ -11,8 +12,10 @@ public class SnakeHead {
 
 	public static final Color FRUIT_COLOR = Color.CYAN;
 	public static final Color SNAKEHEAD_COLOR = Color.WHITE;
+	public static final Color BODY_COLOR = Color.BLUE;
 	private Direction dir = Direction.UNDEFINED;
 	
+	public LinkedList<SnakeBody> body = new LinkedList<SnakeBody>();
 	
 	private int velX = 0, velY = 0;
 	
@@ -37,6 +40,8 @@ public class SnakeHead {
 			System.out.println("collision detected");
 		}
 	}
+	
+	
 	
 	int timer = 0;	
 	public void update() {
